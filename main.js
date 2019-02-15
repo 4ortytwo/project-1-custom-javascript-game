@@ -74,17 +74,12 @@ $(document).ready(() => {
         $('#start-game-btn-start-div').remove();
         lives = 3;
         score = 0;
-        for (let i = 0; i < computers.length; i++) {
-            computers[i].remove();
-            computers.splice(i, 1);
-            debugger
-        }
+        // let computer game elements appear on screen randomly
         myInterval = setInterval(() => {
             var computers = $(".computer")
             if (computers.length < 4) {
                 var posx = (Math.random() * ($('#background').width()-45)).toFixed();
                 var posy = (Math.random() * ($('#background').height()-45)).toFixed();
-                console.log('newcomp');
                 $(newComputer).css({
                     'position': 'absolute',
                     'left': posx + 'px',
@@ -97,11 +92,12 @@ $(document).ready(() => {
                 $(".computer:last")[0].right = parseInt(posx) + $(".computer:last").height();
                 $(".computer:last")[0].left = parseInt(posx);
                 computers = $(".computer");
-               // computers = document.querySelectorAll('.computer');
             }
         }, 5000);
     });
     //END INITIAL START SCREEN BUTTON
+
+    /* restart button */ 
     $("#start-game-btn").click(function(){
         $('#container').css({
             'z-index': 0,
@@ -111,70 +107,70 @@ $(document).ready(() => {
         });
         $('#overlay').toggle();
     });
-
+    /* end restart button */ 
 
     //lives and GAMEOVER
     var lives = 3;
     var removeLife = (()=> {
-        if (lives > 1) {$('#health').children().last().remove(); lives-=1;}else{
-            $('#container').css({
-                'z-index': 999,
-                'position': 'relative',
-                'background-image': `url('/img/gameover3.jpg')`,
-                'background-repeat': 'no-repeat',
-            });
-            // $('#overlay').css({
-            //     'display': 'none'
-            // });
-            $('#overlay').toggle();
-            clearInterval(myInterval);
-            $(document).off("keydown");
-            //TODO:create a button to start a new game
-            $('#container').append(`<div id='start-game-btn-div'><button id='start-game-btn' type='submit'>NEW GAME</button></div>`);
-            //start here
-            $("#start-game-btn").click(function(){
-                $('#container').css({
-                    'z-index': 0,
-                    'position': 'static',
-                    'background-image': ``,
-                    'background-repeat': '',
-                });
-                $('#overlay').toggle();
-                $('#start-game-btn-div').remove();
-                lives = 3;
-                score = 0;
-                scoreSp.text(score);
-                for (let i = 0; i < computers.length; i++) {
-                    computers[i].remove();
-                    computers.splice(i, 1);
-                }
-                $('#health').append(`<img src="img/heart.png" alt='heart'>`);
-                $('#health').append(`<img src="img/heart.png" alt='heart'>`);
-                myInterval = setInterval(() => {
-                    var computers = $(".computer")
-                    if (computers.length < 4) {
-                        var posx = (Math.random() * ($('#background').width()-45)).toFixed();
-                        var posy = (Math.random() * ($('#background').height()-45)).toFixed();
-                        console.log('newcomp');
-                        $(newComputer).css({
-                            'position': 'absolute',
-                            'left': posx + 'px',
-                            'top': posy + 'px',
-                            'height': 13 + '%',
-                        }).appendTo('#computers');
-            
-            
-                        $(".computer:last")[0].top = parseInt(posy);
-                        $(".computer:last")[0].bottom = parseInt(posy) + $(".computer:last").height();
-                        $(".computer:last")[0].right = parseInt(posx) + $(".computer:last").height();
-                        $(".computer:last")[0].left = parseInt(posx);
-                        computers = $(".computer");
-                       // computers = document.querySelectorAll('.computer');
-                    }
-                }, 5000);
-            });
-            //end here
+    if (lives > 1) {
+        $('#health').children().last().remove(); 
+        lives-=1;
+    }
+    else {
+        $('#container').css({
+            'z-index': 999,
+            'position': 'relative',
+            'background-image': `url('/img/gameover3.jpg')`,
+            'background-repeat': 'no-repeat',
+        });
 
+        $('#overlay').toggle();
+        clearInterval(myInterval);
+        $(document).off("keydown");
+        //TODO:create a button to start a new game
+        $('#container').append(`<div id='start-game-btn-div'><button id='start-game-btn' type='submit'>NEW GAME</button></div>`);
+        //start here
+        $("#start-game-btn").click(function(){
+            $('#container').css({
+                'z-index': 0,
+                'position': 'static',
+                'background-image': ``,
+                'background-repeat': '',
+            });
+            $('#overlay').toggle();
+            $('#start-game-btn-div').remove();
+            lives = 3;
+            score = 0;
+            scoreSp.text(score);
+            for (let i = 0; i < computers.length; i++) {
+                computers[i].remove();
+                computers.splice(i, 1);
+            }
+            $('#health').append(`<img src="img/heart.png" alt='heart'>`);
+            $('#health').append(`<img src="img/heart.png" alt='heart'>`);
+            myInterval = setInterval(() => {
+                var computers = $(".computer")
+                if (computers.length < 4) {
+                    var posx = (Math.random() * ($('#background').width()-45)).toFixed();
+                    var posy = (Math.random() * ($('#background').height()-45)).toFixed();
+                    console.log('newcomp');
+                    $(newComputer).css({
+                        'position': 'absolute',
+                        'left': posx + 'px',
+                        'top': posy + 'px',
+                        'height': 13 + '%',
+                    }).appendTo('#computers');
+        
+        
+                    $(".computer:last")[0].top = parseInt(posy);
+                    $(".computer:last")[0].bottom = parseInt(posy) + $(".computer:last").height();
+                    $(".computer:last")[0].right = parseInt(posx) + $(".computer:last").height();
+                    $(".computer:last")[0].left = parseInt(posx);
+                    computers = $(".computer");
+                }
+            }, 5000);
+        });
+        //end here
         }
     })
 
@@ -182,7 +178,6 @@ $(document).ready(() => {
    
     //var computersArray = document.getElementsByClassName('computer'); $('.computer')
     var newComputer = `<img src='/img/computer2.png' alt='computer' class='computer'>`;
-
 
     //function on animationend of progress bar
     progressBar.on('animationend', function () {
@@ -230,7 +225,7 @@ $(document).ready(() => {
                 break;}else{break;}
             case 's':
                 if (checkBorderBot()) {
-                $('#player').css('top', playerPosition.top + 20 + 'px');
+                    $('#player').css('top', playerPosition.top + 20 + 'px');
                 break;} else{break;}
                 case 'a':
                 if (checkBorderLeft()) {
@@ -250,9 +245,7 @@ $(document).ready(() => {
             if (collisionIndex > -1) {
                 progressBar.toggleClass('animate');
                 $(progressBar).on('animationend', function () {
-                    console.log(collisionIndex);
                     computers[collisionIndex].remove();
-                    //$('.computer').splice(collisionIndex, 1);
                 })
             }
             
@@ -260,11 +253,12 @@ $(document).ready(() => {
 
     }
     $(document).keydown(keyDownHandler);
+    
     close.click(() => {
         $("#submit").trigger("click")
     })
 
-    
+    /* helper functions */
     function arrayCollisionDetect(arrayOfComputers, player) {
         for(let i = 0; i < arrayOfComputers.length; i+=1) {
             if(collision(arrayOfComputers[i],player)) {
