@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css'>
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' href='style/style.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='/main.js'></script>
+    <title>Ironhack Basement</title>
+</head>
+
+<body>
+    <div id='container'>
+        <div id='startScreen'></div>
+        <div id='overlay'>
+            <div id='background'>
+                <div id='player'>
+                    <img src='/img/24.png' alt='player' id='playerImg'>
+                    <div class="meter red" id='progressBar'>
+                        <span style="width: 100%"></span>
+                    </div>
+                    <div id='timer'><span id='timeSpan'></span></div>
+                </div>
+                <div id='computers'></div>
+            </div>
+            <div class="w3-container">
+                <h2></h2>
+                <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+                        <div class="w3-center"><br>
+                            <span class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal" id='closeButton'>&times;</span>
+                        </div>
+
+                        <form class="w3-container">
+                            <div class="w3-section">
+                                <label><b>Granting access... Enter this password to pass: </b></label><span id='inputSpan'></span><span
+                                    id='inputWarning'></span>
+                                <input class="w3-input w3-border w3-margin-bottom" id='input' type="text" autocomplete="off"
+                                    required>
+                                <button class="w3-button w3-block w3-red w3-section w3-padding" type="submit" id='submit'>ENTER</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id='health'>
+                <img src="img/heart.png" alt='heart'>
+                <img src="img/heart.png" alt='heart'>
+                <img src="img/heart.png" alt='heart'>
+            </div>
+            <div id='score'><span id='scoreSpan'></span></div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
